@@ -19,6 +19,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+//I ADDED THIS ON COMPUTER aye sir.
+//I ADDED THIS ON COMPUTER aye sir.
+
 public class LonelyTwitterActivity extends Activity {
 
 	private static final String FILENAME = "file.sav";
