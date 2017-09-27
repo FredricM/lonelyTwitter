@@ -1,3 +1,15 @@
+
+/*
+ * LonelyTwitterActivity
+ *
+ * Verison 1.0
+ *
+ * September 26, 2017
+ *
+ * Copyright 2017 Fredric Mendi CMPUT 301 University of Alberta. All rights reserved.
+ * You may use, distribute or modify this code under terms and conditions of the code of Student Behavior at you may fnd a copy of the licence in this project. Otherwise please contact contact@abc
+ */
+
 package ca.ualberta.cs.lonelytwitter;
 
 import java.io.BufferedReader;
@@ -25,9 +37,14 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-//I ADDED THIS ON COMPUTER aye sir.
-//I ADDED THIS ON COMPUTER aye sir.
-
+/**
+ * Represents Twitter Activity with only one person (lonely)
+ *
+ * @author Fredric Mendi
+ * @version 1.5
+ * @see Activity
+ * @since 1.0
+ */
 public class LonelyTwitterActivity extends Activity {
 
 
@@ -40,7 +57,11 @@ public class LonelyTwitterActivity extends Activity {
 	private ArrayAdapter<Tweet> adapter;
 
 
-	/** Called when the activity is first created. */
+	/**
+	 * Creates variables and activities
+	 *
+	 * @param savedInstanceState saves the state of app
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -116,6 +137,10 @@ public class LonelyTwitterActivity extends Activity {
 		oldTweetsList.setAdapter(adapter);
 	}
 
+	/**
+	 * Loads from a file of saved data
+	 *
+	 */
 	private void loadFromFile() {
 		try {
 			FileInputStream fis = openFileInput(FILENAME);
@@ -138,6 +163,9 @@ public class LonelyTwitterActivity extends Activity {
 		}
 	}
 
+	/**
+	 * Saves app info onto a file or creates file if no file exists.
+	 */
 	private void saveInFile() {
 		try {
 			FileOutputStream fos = openFileOutput(FILENAME,
