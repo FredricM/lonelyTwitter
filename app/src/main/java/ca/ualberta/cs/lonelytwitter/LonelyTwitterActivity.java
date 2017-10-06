@@ -64,9 +64,17 @@ public class LonelyTwitterActivity extends Activity {
 
 			public void onClick(View v) {
 				setResult(RESULT_OK);
+				String text = bodyText.getText().toString();
 				tweetList.clear();
-				deleteFile(FILENAME);  // TODO deprecate this button
-				adapter.notifyDataSetChanged();
+				ElasticsearchTweetController.GetTweetsTask getTweetsTask = new ElasticsearchTweetController.GetTweetsTask();
+				getTweetsTask.execute(text);
+			    try{
+					tweetList = getTweetsTask.get();
+					adapter.notifyDataSetChanged();
+				} catch (Exception e) {
+					Log.i("Error", "Failed to get the tweets from the async object");
+				}
+
 			}
 		});
 
@@ -78,14 +86,14 @@ public class LonelyTwitterActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onStart();
 		//loadFromFile(); // TODO replace this with elastic search
-		ElasticsearchTweetController.GetTweetsTask getTweetsTask = new ElasticsearchTweetController.GetTweetsTask();
+		/*ElasticsearchTweetController.GetTweetsTask getTweetsTask = new ElasticsearchTweetController.GetTweetsTask();
 		getTweetsTask.execute("");
 
 		try {
 			tweetList = getTweetsTask.get();
 		} catch (Exception e) {
 			Log.i("Error", "Failed to get the tweets from the async object");
-		}
+		}*/
 
 		adapter = new ArrayAdapter<NormalTweet>(this,
 				R.layout.list_item, tweetList);
