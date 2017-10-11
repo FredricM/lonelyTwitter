@@ -66,15 +66,17 @@ public class LonelyTwitterActivity extends Activity {
 				setResult(RESULT_OK);
 				String text = bodyText.getText().toString();
 				tweetList.clear();
+				adapter.notifyDataSetChanged();
+
 				ElasticsearchTweetController.GetTweetsTask getTweetsTask = new ElasticsearchTweetController.GetTweetsTask();
 				getTweetsTask.execute(text);
 			    try{
 					tweetList = getTweetsTask.get();
-					adapter.notifyDataSetChanged();
+
 				} catch (Exception e) {
 					Log.i("Error", "Failed to get the tweets from the async object");
 				}
-
+				adapter.notifyDataSetChanged();
 			}
 		});
 
